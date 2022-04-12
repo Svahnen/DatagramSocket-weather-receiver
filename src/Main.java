@@ -1,11 +1,8 @@
-import java.io.IOException;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("Receiver started");
-        GUI giu = new GUI();
+        DataReceiver receiver = new DataReceiver();
+        GUI giu = new GUI(receiver);
     }
 }

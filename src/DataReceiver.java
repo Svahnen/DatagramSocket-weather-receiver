@@ -7,12 +7,13 @@ import java.time.LocalDateTime;
 
 public class DataReceiver {
 
-    int minPort = 55555;
+    int port = 55555;
     byte[] data = new byte[256];
+
     DatagramSocket socket;
 
     public DataReceiver() throws Exception {
-        this.socket = new DatagramSocket(minPort);
+        this.socket = new DatagramSocket(port);
     }
 
     public String getData() throws UnknownHostException, SocketException, IOException {
