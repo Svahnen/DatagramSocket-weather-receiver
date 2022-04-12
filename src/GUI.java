@@ -1,34 +1,30 @@
 import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.GridLayout;
+import javax.swing.JTextArea;
 
 public class GUI extends JFrame {
     DataReceiver receiver;
-    List<JLabel> messageLabels = new ArrayList<JLabel>();
+    String message = "";
+    JTextArea textArea = new JTextArea(50, 25);
     JPanel panel1 = new JPanel();
 
     public GUI(DataReceiver receiver) throws UnknownHostException, SocketException, IOException {
         this.receiver = receiver;
 
-        panel1.setLayout(new GridLayout(20, 1));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 400);
+        setSize(300, 800);
         setLocationRelativeTo(null);
         setVisible(true);
 
         add(panel1);
-        panel1.add(new JLabel("test"));
+        panel1.add(textArea);
 
         while (true) {
-            messageLabels.add(new JLabel(receiver.getData()));
-            panel1.add(messageLabels.get(messageLabels.size() - 1));
+            textArea.append(receiver.getData() + "\n");
             revalidate();
             repaint();
         }
