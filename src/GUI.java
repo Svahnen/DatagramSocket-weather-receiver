@@ -4,6 +4,7 @@ import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class GUI extends JFrame {
@@ -11,6 +12,7 @@ public class GUI extends JFrame {
     String message = "";
     JTextArea textArea = new JTextArea(50, 25);
     JPanel panel1 = new JPanel();
+    JScrollPane scrollPane = new JScrollPane(textArea);
 
     public GUI(DataReceiver receiver) throws UnknownHostException, SocketException, IOException {
         this.receiver = receiver;
@@ -21,7 +23,7 @@ public class GUI extends JFrame {
         setVisible(true);
 
         add(panel1);
-        panel1.add(textArea);
+        panel1.add(scrollPane);
 
         while (true) {
             textArea.append(receiver.getData() + "\n");
